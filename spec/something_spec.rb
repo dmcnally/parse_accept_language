@@ -17,11 +17,15 @@ def parse_accept_language(preferred_language, available_languages)
 
   accepted_languages = []
   preferred_languages.each do |language|
-    available_languages.select {|l| l.split('-').first == language or l == language}.each do |matched_language|
+    available_languages.select {|available_language| matches_language_full_or_partial?(available_language, language) }.each do |matched_language|
       accepted_languages << matched_language unless accepted_languages.include?(matched_language)
     end
   end
   accepted_languages
+end
+
+def matches_language_full_or_partial?(available_language, language)
+  available_language.split('-').first == language or available_language == language
 end
 
 describe 'Parsing accepted languages' do
