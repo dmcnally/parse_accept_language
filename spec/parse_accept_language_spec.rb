@@ -50,7 +50,6 @@ describe 'Parsing accepted languages' do
     expect(result).to eq(["fr-CA"])
   end
 
-
   it 'returns fr-FR and fr-CA for fr-FR, fr' do
     result = parse_accept_language("fr-FR, fr", accepted_languages)
 
